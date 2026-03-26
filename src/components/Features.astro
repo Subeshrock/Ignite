@@ -1,0 +1,81 @@
+---
+const features = [
+  {
+    icon: '⚡',
+    title: 'Sub-150ms Boot',
+    desc: 'Firecracker\'s minimal device model means MicroVMs cold-boot faster than most containers warm-start.',
+  },
+  {
+    icon: '🐳',
+    title: 'Docker Image Compatible',
+    desc: 'Use any OCI image from Docker Hub or your private registry. No conversion, no new tooling.',
+  },
+  {
+    icon: '🔒',
+    title: 'Hardware Isolation',
+    desc: 'Each VM gets its own kernel via KVM. CPU-enforced memory isolation. Not a namespace — a hardware guarantee.',
+  },
+  {
+    icon: '📸',
+    title: 'Machine-State Snapshots',
+    desc: 'Capture CPU registers, all RAM, disk state. Restore to the exact microsecond. Impossible with containers.',
+  },
+  {
+    icon: '🌐',
+    title: 'Built-in Clustering',
+    desc: 'Ignite Swarm: VXLAN mesh networking, deterministic subnets. One command to init, one to join.',
+  },
+  {
+    icon: '📝',
+    title: 'Compose Support',
+    desc: 'Multi-VM stacks from a single YAML file. Works with Docker Compose v3 syntax. Zero migration cost.',
+  },
+  {
+    icon: '~5MB',
+    title: 'Tiny Overhead',
+    desc: 'Each MicroVM adds only ~5MB of overhead. Run hundreds on a single host without breaking a sweat.',
+  },
+  {
+    icon: '📊',
+    title: 'Built-in Dashboard',
+    desc: 'Web dashboard served by the daemon at localhost:3000. Live VM status, metrics, and management. No install needed.',
+  },
+  {
+    icon: '🔧',
+    title: '20+ CLI Commands',
+    desc: 'run, ps, stop, exec, logs, stats, inspect, snapshot, restore, and more. Complete VM lifecycle from your terminal.',
+  },
+];
+---
+
+<section class="sec sec--border" id="features">
+  <div class="wrap">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center">
+      <p class="label">Features</p>
+      <h2 class="heading--sm" style="margin-top:0.75rem">
+        Everything you need.<br/><span class="grad">Nothing you don't.</span>
+      </h2>
+      <p class="subheading" style="margin-top:1rem;text-align:center">
+        One binary gives you VM isolation, Docker compatibility, clustering, snapshots, and a dashboard.
+      </p>
+    </div>
+
+    <div class="g g3 feat__grid">
+      {features.map((f) => (
+        <div class="card feat__card">
+          <div class="feat__icon">{f.icon}</div>
+          <h3 class="feat__title">{f.title}</h3>
+          <p class="feat__desc">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.feat__grid{margin-top:3.5rem}
+.feat__card{display:flex;flex-direction:column;gap:0.5rem}
+.feat__icon{font-size:1.75rem;margin-bottom:0.25rem}
+.feat__title{font-size:1rem;font-weight:700}
+.feat__desc{font-size:0.875rem;color:var(--text-dim);line-height:1.7}
+</style>
