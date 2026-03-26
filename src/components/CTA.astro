@@ -1,0 +1,49 @@
+<section class="cta">
+  <div class="cta__glow" aria-hidden="true"></div>
+  <div class="wrap cta__wrap">
+    <h2 class="cta__title">
+      Ready to run VMs<br/>
+      <span class="grad">like it's 2027?</span>
+    </h2>
+    <p class="cta__desc">
+      One binary. <150ms boot. Your Docker images. Your muscle memory.<br/>
+      But with real isolation, real snapshots, and real migration.
+    </p>
+    <div class="cta__actions">
+      <a href="#start" class="btn btn--fire">
+        Get Started →
+      </a>
+      <a href="https://github.com/ignite-microvm/ignite" target="_blank" rel="noopener" class="btn btn--ghost">
+        GitHub ↗
+      </a>
+    </div>
+    <p class="cta__note">Free & open source · Apache 2.0 · Works on any Linux with KVM</p>
+  </div>
+</section>
+
+<style>
+.cta{
+  position:relative;padding:8rem 0;overflow:hidden;
+  border-top:1px solid var(--border);
+}
+.cta__glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:500px;
+  background:radial-gradient(ellipse,rgba(249,115,22,0.08) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta__wrap{
+  position:relative;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:1.25rem;
+}
+.cta__title{
+  font-size:clamp(2.25rem,5vw,3.75rem);
+  font-weight:900;line-height:1.1;letter-spacing:-0.03em;
+}
+.cta__desc{font-size:1.05rem;color:var(--text-dim);line-height:1.75;max-width:520px}
+.cta__actions{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem}
+.cta__note{
+  font-family:var(--mono);font-size:0.7rem;color:var(--text-faint);
+  margin-top:0.5rem;letter-spacing:0.02em;
+}
+</style>
