@@ -1,0 +1,114 @@
+<section class="sec sec--border" id="how">
+  <div class="wrap">
+    <div class="prob__grid">
+      <div class="prob__left">
+        <p class="label">The Problem</p>
+        <h2 class="heading--sm" style="margin-top:0.75rem">
+          Containers share a kernel.<br/>
+          <span class="grad">That's the problem.</span>
+        </h2>
+        <p class="subheading" style="margin-top:1.25rem">
+          Every container on a host shares the same Linux kernel. One kernel exploit,
+          one container escape — and the attacker owns <em>everything</em>.
+          Namespaces are policies. <strong>VMs are physics.</strong>
+        </p>
+      </div>
+
+      <div class="prob__right">
+        <div class="prob__comparison">
+          <div class="prob__col prob__col--bad">
+            <div class="prob__col-label">
+              <span class="prob__dot prob__dot--red"></span>
+              Containers
+            </div>
+            <div class="prob__diagram">
+              <div class="prob__box prob__box--app">App A</div>
+              <div class="prob__box prob__box--app">App B</div>
+              <div class="prob__box prob__box--app">App C</div>
+              <div class="prob__box prob__box--shared">Shared Kernel ⚠️</div>
+              <div class="prob__box prob__box--host">Host OS</div>
+            </div>
+            <p class="prob__verdict">One escape = full access</p>
+          </div>
+
+          <div class="prob__col prob__col--good">
+            <div class="prob__col-label">
+              <span class="prob__dot prob__dot--green"></span>
+              Ignite MicroVMs
+            </div>
+            <div class="prob__diagram">
+              <div class="prob__vm-row">
+                <div class="prob__vm">
+                  <div class="prob__box prob__box--app-sm">App A</div>
+                  <div class="prob__box prob__box--kernel">Kernel</div>
+                </div>
+                <div class="prob__vm">
+                  <div class="prob__box prob__box--app-sm">App B</div>
+                  <div class="prob__box prob__box--kernel">Kernel</div>
+                </div>
+                <div class="prob__vm">
+                  <div class="prob__box prob__box--app-sm">App C</div>
+                  <div class="prob__box prob__box--kernel">Kernel</div>
+                </div>
+              </div>
+              <div class="prob__box prob__box--fc">Firecracker + KVM 🔒</div>
+              <div class="prob__box prob__box--host">Host OS</div>
+            </div>
+            <p class="prob__verdict prob__verdict--good">Isolated by hardware</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.prob__grid{
+  display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:center;
+}
+.prob__comparison{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+
+.prob__col{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.5rem;
+}
+.prob__col--bad{border-color:rgba(248,113,113,0.2)}
+.prob__col--good{border-color:rgba(52,211,153,0.2)}
+
+.prob__col-label{
+  display:flex;align-items:center;gap:0.5rem;
+  font-weight:700;font-size:0.875rem;margin-bottom:1rem;
+}
+.prob__dot{width:8px;height:8px;border-radius:50%}
+.prob__dot--red{background:var(--red);box-shadow:0 0 8px rgba(248,113,113,0.5)}
+.prob__dot--green{background:var(--green);box-shadow:0 0 8px rgba(52,211,153,0.5)}
+
+.prob__diagram{display:flex;flex-direction:column;gap:4px}
+
+.prob__box{
+  padding:0.5rem 0.75rem;border-radius:6px;text-align:center;
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;
+}
+.prob__box--app{background:rgba(248,113,113,0.1);color:var(--red);border:1px solid rgba(248,113,113,0.15)}
+.prob__box--shared{background:rgba(248,113,113,0.15);color:var(--red);border:1px dashed rgba(248,113,113,0.3)}
+.prob__box--host{background:var(--bg-raised);color:var(--text-faint);border:1px solid var(--border)}
+
+.prob__vm-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.prob__vm{display:flex;flex-direction:column;gap:2px}
+.prob__box--app-sm{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.15);padding:0.35rem;font-size:0.6rem}
+.prob__box--kernel{background:rgba(52,211,153,0.06);color:var(--green);border:1px solid rgba(52,211,153,0.1);padding:0.25rem;font-size:0.55rem;opacity:0.7}
+.prob__box--fc{background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.2)}
+
+.prob__verdict{
+  font-family:var(--mono);font-size:0.7rem;text-align:center;
+  margin-top:0.75rem;color:var(--red);font-weight:600;
+}
+.prob__verdict--good{color:var(--green)}
+
+@media(max-width:1024px){
+  .prob__grid{grid-template-columns:1fr;gap:2.5rem}
+}
+@media(max-width:640px){
+  .prob__comparison{grid-template-columns:1fr}
+}
+</style>
