@@ -1,0 +1,84 @@
+<section class="sec sec--border" id="start">
+  <div class="wrap">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center">
+      <p class="label">Get Started</p>
+      <h2 class="heading--sm" style="margin-top:0.75rem">
+        From zero to MicroVM<br/><span class="grad">in 60 seconds.</span>
+      </h2>
+    </div>
+
+    <div class="start__steps">
+      <div class="start__step">
+        <div class="start__badge">1</div>
+        <h3>Install</h3>
+        <p>Single binary. No dependencies. Works on any Linux with KVM.</p>
+        <div class="codeblock">
+          <span class="c"># One-line install</span><br/>
+          <span class="k">curl -sfL</span> https://get.ignite.dev | <span class="k">sh</span><br/><br/>
+          <span class="c"># Verify everything works</span><br/>
+          <span class="k">ign doctor</span><br/>
+          <span class="s">✓ KVM available</span><br/>
+          <span class="s">✓ Firecracker bundled</span><br/>
+          <span class="s">✓ ignited running</span><br/>
+          <span class="s">✓ Network configured</span>
+        </div>
+      </div>
+
+      <div class="start__step">
+        <div class="start__badge">2</div>
+        <h3>Run your first VM</h3>
+        <p>Pull any Docker image. Boot it as an isolated MicroVM.</p>
+        <div class="codeblock">
+          <span class="c"># Boot Ubuntu with 2 vCPUs, 512MB RAM</span><br/>
+          <span class="k">ign run</span> <span class="s">ubuntu:latest</span> <span class="f">--vcpu 2 --memory 512M</span><br/><br/>
+          <span class="c"># It's a real VM</span><br/>
+          <span class="k">ign exec</span> <span class="s">my-vm</span> <span class="f">cat /proc/cpuinfo</span><br/><br/>
+          <span class="c"># Full docker-like management</span><br/>
+          <span class="k">ign ps</span><br/>
+          <span class="k">ign logs</span> <span class="s">my-vm</span> <span class="f">-f</span><br/>
+          <span class="k">ign stats</span> <span class="s">my-vm</span>
+        </div>
+      </div>
+
+      <div class="start__step">
+        <div class="start__badge">3</div>
+        <h3>Deploy a full stack</h3>
+        <p>Use your existing docker-compose.yml. Add VM superpowers.</p>
+        <div class="codeblock">
+          <span class="c"># docker-compose.yml works unchanged</span><br/>
+          <span class="k">ign up</span> <span class="f">-d</span><br/><br/>
+          <span class="c"># Add VM-specific config (optional)</span><br/>
+          <span class="p">services:</span><br/>
+          <span class="p">  api:</span><br/>
+          <span>    image: myapp:latest</span><br/>
+          <span class="p">    vm:</span> <span class="c"># Ignite extension</span><br/>
+          <span>      vcpus: 4</span><br/>
+          <span>      memory: 1G</span><br/>
+          <span>      kernel: 6.1-ignite-slim</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.start__steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-top:3.5rem;
+}
+.start__step{display:flex;flex-direction:column;gap:0.75rem}
+.start__badge{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--fire-glow);color:var(--fire);
+  font-family:var(--mono);font-weight:700;font-size:0.875rem;
+  border:1px solid rgba(249,115,22,0.2);
+}
+.start__step h3{font-size:1.05rem;font-weight:700}
+.start__step p{font-size:0.875rem;color:var(--text-dim);line-height:1.6}
+.start__step .codeblock{font-size:0.75rem;line-height:1.85;flex:1}
+
+@media(max-width:1024px){
+  .start__steps{grid-template-columns:1fr}
+}
+</style>
