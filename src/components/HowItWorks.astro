@@ -1,0 +1,94 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Use Docker images you already have',
+    desc: 'Pull any image from Docker Hub or your private registry. No conversion step. No new image format to learn.',
+    code: 'ign pull nginx:latest',
+    icon: '📦',
+  },
+  {
+    num: '02',
+    title: 'Ignite boots a real VM in <150ms',
+    desc: 'Firecracker creates a MicroVM with its own kernel, memory, and network stack. Hardware isolation via KVM — not namespaces.',
+    code: 'ign run nginx:latest --vcpu 2 --memory 256M -p 80:80',
+    icon: '⚡',
+  },
+  {
+    num: '03',
+    title: 'Manage it like Docker',
+    desc: 'Same CLI patterns you already know. ps, logs, exec, stop, rm — they all work. Your muscle memory transfers 1:1.',
+    code: 'ign ps\nign logs my-vm -f\nign exec my-vm bash',
+    icon: '🛠',
+  },
+  {
+    num: '04',
+    title: 'Do what containers can\'t',
+    desc: 'Snapshot entire machine state. Time-travel to any point. Live-migrate between hosts. Hibernate to zero cost. Branch like git.',
+    code: 'ign snapshot my-vm --name v1\nign time-travel my-vm --to v1\nign teleport my-vm --to eu-west-1',
+    icon: '🚀',
+  },
+];
+---
+
+<section class="sec sec--border">
+  <div class="wrap">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+      <p class="label">How It Works</p>
+      <h2 class="heading--sm" style="margin-top:0.75rem">
+        If you know Docker,<br/><span class="grad">you already know Ignite.</span>
+      </h2>
+      <p class="subheading" style="margin-top:1rem;text-align:center">
+        Same workflow. Same images. Completely different isolation level.
+      </p>
+    </div>
+
+    <div class="steps">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="step__left">
+            <div class="step__num">{s.icon}</div>
+            <div class="step__line"></div>
+          </div>
+          <div class="step__content">
+            <span class="step__label">{s.num}</span>
+            <h3 class="step__title">{s.title}</h3>
+            <p class="step__desc">{s.desc}</p>
+            <div class="codeblock step__code">
+              {s.code.split('\n').map((line) => (
+                <>
+                  <span class="k">$ </span><span>{line}</span><br/>
+                </>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.steps{
+  margin-top:3.5rem;display:flex;flex-direction:column;gap:0;
+  max-width:680px;margin-left:auto;margin-right:auto;
+}
+.step{display:flex;gap:1.75rem}
+.step__left{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.step__num{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-card);border:1px solid var(--border);
+  font-size:1.25rem;
+}
+.step__line{width:1px;flex:1;background:var(--border);min-height:24px}
+.step:last-child .step__line{display:none}
+.step__content{padding-bottom:2.5rem;flex:1}
+.step__label{
+  font-family:var(--mono);font-size:0.65rem;font-weight:700;
+  color:var(--fire);letter-spacing:0.1em;
+}
+.step__title{font-size:1.15rem;font-weight:700;margin:0.3rem 0 0.5rem}
+.step__desc{font-size:0.9rem;color:var(--text-dim);line-height:1.7;margin-bottom:1rem}
+.step__code{padding:0.8rem 1rem;font-size:0.78rem;line-height:1.8}
+</style>
