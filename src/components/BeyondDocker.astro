@@ -1,0 +1,96 @@
+---
+const powers = [
+  {
+    icon: '🚀',
+    tag: 'In Progress',
+    tagClass: 'tag--fire',
+    title: 'Teleport — Live Migration',
+    subtitle: '20–80ms downtime. Any host.',
+    desc: 'Move a running VM between physical hosts with near-zero downtime. Pre-copy memory via KVM dirty page tracking. TCP connections survive. The service moves, not restarts.',
+    code: `$ ign teleport api-server --to node-eu-west-1\n  ⚡ Migrated in 47ms. TCP connections intact.`,
+  },
+  {
+    icon: '⏪',
+    tag: 'v2.0',
+    tagClass: 'tag--fire',
+    title: 'TimeMachine — Git for Runtime',
+    subtitle: 'Branch, diff, time-travel your VMs.',
+    desc: 'Every snapshot is a commit. CoW delta layers store only what changed. Fork your prod database, test a migration, throw it away. Production debugging nobody else can offer.',
+    code: `$ ign history my-db\n$ ign branch my-db --from snap:6 experiment\n$ ign time-travel my-db --to snap:3`,
+  },
+  {
+    icon: '💤',
+    tag: 'v2.0',
+    tagClass: 'tag--fire',
+    title: 'Hibernation — Zero Idle Cost',
+    subtitle: 'Scale to zero with full state.',
+    desc: 'Write complete VM state to disk. Release vCPUs, memory, everything. Resume in <200ms with the exact state preserved. Run 100 dev VMs at zero cost when idle.',
+    code: `$ ign hibernate staging-env\n  💤 0 vCPUs, 0 MB — state saved\n$ ign start staging-env\n  ⚡ Resumed in 180ms`,
+  },
+  {
+    icon: '🔗',
+    tag: 'v2.0',
+    tagClass: 'tag--fire',
+    title: 'vk8s — Kubernetes CRI',
+    subtitle: 'Pods as real MicroVMs.',
+    desc: 'Kubernetes uses Ignite for pod isolation. Each pod = one MicroVM. VM-level isolation between pods. Teleport-backed node drain — workloads migrate instead of dying.',
+    code: `containerRuntimeEndpoint:\n  unix:///var/run/ignite-cri.sock\nruntimeClassName: ignite-microvm`,
+  },
+];
+---
+
+<section class="sec sec--border" id="beyond">
+  <div class="wrap">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center">
+      <p class="label">Beyond Docker</p>
+      <h2 class="heading--sm" style="margin-top:0.75rem">
+        Things containers<br/><span class="grad">can never do.</span>
+      </h2>
+      <p class="subheading" style="margin-top:1rem;text-align:center">
+        Real VMs enable capabilities that are structurally impossible with containers.
+        This is Ignite's permanent moat.
+      </p>
+    </div>
+
+    <div class="g g2 beyond__grid">
+      {powers.map((p) => (
+        <div class="card beyond__card">
+          <div class="beyond__top">
+            <span class="beyond__icon">{p.icon}</span>
+            <span class={`tag ${p.tagClass}`}>{p.tag}</span>
+          </div>
+          <h3 class="beyond__title">{p.title}</h3>
+          <p class="beyond__sub">{p.subtitle}</p>
+          <p class="beyond__desc">{p.desc}</p>
+          <div class="codeblock beyond__code">
+            {p.code.split('\n').map((line) => (
+              <>
+                {line.trim().startsWith('$') ? (
+                  <><span class="k">{line}</span><br/></>
+                ) : line.trim().startsWith('⚡') || line.trim().startsWith('💤') || line.trim().startsWith('✓') ? (
+                  <><span class="s">{line}</span><br/></>
+                ) : (
+                  <><span>{line}</span><br/></>
+                )}
+              </>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.beyond__grid{margin-top:3.5rem}
+.beyond__card{display:flex;flex-direction:column}
+.beyond__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.beyond__icon{font-size:2rem}
+.beyond__title{font-size:1.15rem;font-weight:700;margin-bottom:0.15rem}
+.beyond__sub{
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;
+  letter-spacing:0.08em;color:var(--fire);margin-bottom:0.75rem;
+}
+.beyond__desc{font-size:0.875rem;color:var(--text-dim);line-height:1.7;flex:1;margin-bottom:1.25rem}
+.beyond__code{padding:1rem 1.25rem;font-size:0.78rem;line-height:1.9;margin-top:auto}
+</style>
