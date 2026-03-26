@@ -2,14 +2,25 @@
   "name": "ignite-website",
   "type": "module",
   "version": "1.0.0",
+  "private": true,
+  "description": "Ignite — MicroVM ecosystem marketing website built with Astro",
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
+    "build": "node scripts/generate-og.mjs && astro build",
+    "preview": "astro preview",
     "og": "node scripts/generate-og.mjs",
-    "build": "node scripts/generate-og.mjs && astro build"
-    "preview": "astro preview"
+    "check": "astro check",
+    "clean": "rm -rf dist .astro node_modules/.cache"
   },
   "dependencies": {
-    "astro": "^4.16.0",
-    "@resvg/resvg-js": "^2.6.2"
+    "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   }
 }
