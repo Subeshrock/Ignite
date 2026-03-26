@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Features from '../components/Features.astro';
+import BeyondDocker from '../components/BeyondDocker.astro';
+import Security from '../components/Security.astro';
+import Comparison from '../components/Comparison.astro';
+import GetStarted from '../components/GetStarted.astro';
+import Ecosystem from '../components/Ecosystem.astro';
+import OpenSource from '../components/OpenSource.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="Ignite — MicroVMs with Docker UX | Firecracker Speed, VM Isolation"
+  description="Run hardware-isolated MicroVMs as easily as Docker containers. <150ms boot, ~5MB overhead, 100% kernel isolation. Use your existing Docker images. Open source, Apache 2.0."
+>
+  <Nav />
+  <main>
+    <Hero />
+    <Problem />
+    <HowItWorks />
+    <Features />
+    <BeyondDocker />
+    <Security />
+    <Comparison />
+    <GetStarted />
+    <Ecosystem />
+    <OpenSource />
+    <CTA />
+  </main>
+  <Footer />
+</Base>
