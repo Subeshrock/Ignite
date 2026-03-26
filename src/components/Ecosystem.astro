@@ -1,0 +1,48 @@
+---
+const tools = [
+  { icon: '💻', name: 'CLI', desc: '20+ commands. Superset of Docker CLI.', status: 'Shipped' },
+  { icon: '🎨', name: 'Dashboard', desc: 'Web UI at localhost:3000. Always available.', status: 'Shipped' },
+  { icon: '📦', name: 'Compose', desc: 'Multi-VM stacks. Docker Compose v3 compatible.', status: 'Shipped' },
+  { icon: '⚡', name: 'Swarm', desc: 'VXLAN mesh clustering. One command setup.', status: 'Shipped' },
+  { icon: '🔧', name: 'SDK', desc: 'Go, Rust, Python. Programmatic VM management.', status: 'v2.0' },
+  { icon: '📝', name: 'VS Code', desc: 'Extension for managing VMs from your editor.', status: 'v2.0' },
+  { icon: '🌐', name: 'Ignite Hub', desc: 'Image registry + Docker Hub bridge.', status: 'v1.5' },
+  { icon: '🖥', name: 'Studio', desc: 'Visual compose editor + network topology.', status: 'v1.5' },
+];
+---
+
+<section class="sec sec--border">
+  <div class="wrap">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center">
+      <p class="label">Ecosystem</p>
+      <h2 class="heading--sm" style="margin-top:0.75rem">
+        Not just a runtime.<br/><span class="grad">A complete platform.</span>
+      </h2>
+      <p class="subheading" style="margin-top:1rem;text-align:center">
+        CLI, dashboard, compose, clustering, SDK, registry — all built-in or coming soon.
+      </p>
+    </div>
+
+    <div class="g g4 eco__grid">
+      {tools.map((t) => (
+        <div class="card eco__card">
+          <div class="eco__top">
+            <span class="eco__icon">{t.icon}</span>
+            <span class={`tag ${t.status === 'Shipped' ? 'tag--green' : 'tag--fire'}`}>{t.status}</span>
+          </div>
+          <h3 class="eco__name">{t.name}</h3>
+          <p class="eco__desc">{t.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.eco__grid{margin-top:3.5rem}
+.eco__card{padding:1.5rem}
+.eco__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem}
+.eco__icon{font-size:1.5rem}
+.eco__name{font-size:0.95rem;font-weight:700;margin-bottom:0.25rem}
+.eco__desc{font-size:0.8125rem;color:var(--text-dim);line-height:1.6}
+</style>
