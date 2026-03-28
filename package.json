@@ -14,7 +14,7 @@
     "clean": "rm -rf dist .astro node_modules/.cache"
   },
   "dependencies": {
-    "astro": "^4.16.0"
+    "astro": "^6.1.1"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
