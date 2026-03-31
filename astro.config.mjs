@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://ignite.dev',
+  site: 'https://ignite-vm.netlify.app',
   compressHTML: true,
   build: {
     inlineStylesheets: 'always',
