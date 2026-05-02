@@ -1,17 +1,18 @@
 ---
 const rows = [
-  { feature: 'Isolation model', docker: 'Namespaces (kernel shared)', ignite: 'KVM (own kernel per VM)', winner: 'ignite' },
-  { feature: 'Cold start', docker: '~500ms', ignite: '<150ms', winner: 'ignite' },
-  { feature: 'Memory overhead', docker: '~2MB', ignite: '~5MB', winner: 'docker' },
-  { feature: 'Image format', docker: 'OCI', ignite: 'OCI (same images)', winner: 'tie' },
-  { feature: 'CLI familiarity', docker: 'docker run/ps/stop', ignite: 'ign run/ps/stop (superset)', winner: 'ignite' },
-  { feature: 'Hardware snapshots', docker: '❌ Not possible', ignite: '✅ CPU + RAM + disk', winner: 'ignite' },
-  { feature: 'Live migration', docker: '❌ Not possible', ignite: '✅ 20-80ms downtime', winner: 'ignite' },
-  { feature: 'Time travel / branching', docker: '❌ Not possible', ignite: '✅ Git-like history', winner: 'ignite' },
-  { feature: 'Hibernate to zero', docker: '❌ Loses state', ignite: '✅ Full state preserved', winner: 'ignite' },
-  { feature: 'Kernel customization', docker: '❌ Host kernel', ignite: '✅ Per-VM kernel', winner: 'ignite' },
-  { feature: 'Security layers', docker: '2–3', ignite: '7 independent layers', winner: 'ignite' },
-  { feature: 'Compose support', docker: 'docker-compose.yml', ignite: 'Same file, vm: extensions', winner: 'tie' },
+  { feature: 'Isolation model',       docker: 'Namespaces (kernel shared)',    vyoma: 'KVM (own kernel per VM)',      winner: 'vyoma' },
+  { feature: 'Cold start',            docker: '~500ms',                        vyoma: '<150ms',                       winner: 'vyoma' },
+  { feature: 'Memory overhead',       docker: '~2MB',                          vyoma: '~5MB',                         winner: 'docker' },
+  { feature: 'Image format',          docker: 'OCI',                           vyoma: 'OCI (same images)',             winner: 'tie' },
+  { feature: 'CLI familiarity',       docker: 'docker run/ps/stop',            vyoma: 'vyoma run/ps/stop (superset)', winner: 'vyoma' },
+  { feature: 'VMM backend',           docker: 'runc / containerd',             vyoma: 'cloud-hypervisor (Rust)',      winner: 'vyoma' },
+  { feature: 'Hardware snapshots',    docker: '❌ Not possible',               vyoma: '✅ CPU + RAM + disk',          winner: 'vyoma' },
+  { feature: 'Live migration',        docker: '❌ Not possible',               vyoma: '✅ 20-80ms downtime',          winner: 'vyoma' },
+  { feature: 'Time travel/branching', docker: '❌ Not possible',               vyoma: '✅ Git-like history',          winner: 'vyoma' },
+  { feature: 'Hibernate to zero',     docker: '❌ Loses state',               vyoma: '✅ Full state preserved',      winner: 'vyoma' },
+  { feature: 'Kernel customization',  docker: '❌ Host kernel',               vyoma: '✅ Per-VM kernel',             winner: 'vyoma' },
+  { feature: 'Security layers',       docker: '2–3',                           vyoma: '7 independent layers',         winner: 'vyoma' },
+  { feature: 'Compose support',       docker: 'docker-compose.yml',            vyoma: 'Same file, vm: extensions',   winner: 'tie' },
 ];
 ---
 
@@ -20,10 +21,10 @@ const rows = [
     <div style="text-align:center;display:flex;flex-direction:column;align-items:center">
       <p class="label">Comparison</p>
       <h2 class="heading--sm" style="margin-top:0.75rem">
-        Docker vs Ignite.<br/><span class="grad">Honest comparison.</span>
+        Docker vs Vyoma.<br/><span class="grad">Honest comparison.</span>
       </h2>
       <p class="subheading" style="margin-top:1rem;text-align:center">
-        Ignite isn't replacing containers for everything. It's for when isolation actually matters.
+        Vyoma isn't replacing containers for everything. It's for when isolation actually matters.
       </p>
     </div>
 
@@ -33,7 +34,7 @@ const rows = [
           <tr>
             <th>Feature</th>
             <th>Docker</th>
-            <th class="cmp__th-ign">Ignite 🔥</th>
+            <th class="cmp__th-vyoma">Vyoma 🌐</th>
           </tr>
         </thead>
         <tbody>
@@ -41,7 +42,7 @@ const rows = [
             <tr>
               <td class="cmp__feature">{r.feature}</td>
               <td class={r.winner === 'docker' ? 'cmp__win' : ''}>{r.docker}</td>
-              <td class={r.winner === 'ignite' ? 'cmp__win cmp__ign' : 'cmp__ign'}>{r.ignite}</td>
+              <td class={r.winner === 'vyoma' ? 'cmp__win cmp__vyoma' : 'cmp__vyoma'}>{r.vyoma}</td>
             </tr>
           ))}
         </tbody>
@@ -51,26 +52,22 @@ const rows = [
 </section>
 
 <style>
-.cmp__table-wrap{
-  margin-top:3rem;overflow-x:auto;
-  border:1px solid var(--border);border-radius:var(--radius-lg);
+.cmp__table-wrap {
+  margin-top: 3rem; overflow-x: auto;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
 }
-.cmp__table{
-  width:100%;border-collapse:collapse;font-size:0.875rem;
+.cmp__table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.cmp__table th {
+  padding: 1rem 1.25rem; text-align: left; font-weight: 700; font-size: 0.8125rem;
+  background: var(--bg-card); border-bottom: 1px solid var(--border); color: var(--text-dim);
 }
-.cmp__table th{
-  padding:1rem 1.25rem;text-align:left;font-weight:700;font-size:0.8125rem;
-  background:var(--bg-card);border-bottom:1px solid var(--border);color:var(--text-dim);
-}
-.cmp__th-ign{color:var(--fire-light) !important}
-.cmp__table td{
-  padding:0.8rem 1.25rem;border-bottom:1px solid var(--border);color:var(--text-dim);
-}
-.cmp__table tr:last-child td{border-bottom:none}
-.cmp__table tr:hover td{background:var(--bg-card)}
-.cmp__feature{font-weight:600;color:var(--text)}
-.cmp__win{font-weight:600}
-.cmp__ign{color:var(--text)}
-td.cmp__win.cmp__ign{color:var(--green);font-weight:600}
-td.cmp__win:not(.cmp__ign){color:var(--green)}
+.cmp__th-vyoma { color: var(--gold-light) !important; }
+.cmp__table td { padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+.cmp__table tr:last-child td { border-bottom: none; }
+.cmp__table tr:hover td { background: var(--bg-card); }
+.cmp__feature { font-weight: 600; color: var(--text); }
+.cmp__win { font-weight: 600; }
+.cmp__vyoma { color: var(--text); }
+td.cmp__win.cmp__vyoma { color: var(--green); font-weight: 600; }
+td.cmp__win:not(.cmp__vyoma) { color: var(--green); }
 </style>
