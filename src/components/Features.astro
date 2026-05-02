@@ -3,12 +3,12 @@ const features = [
   {
     icon: '⚡',
     title: 'Sub-150ms Boot',
-    desc: 'Firecracker\'s minimal device model means MicroVMs cold-boot faster than most containers warm-start.',
+    desc: "cloud-hypervisor's lean VMM means MicroVMs cold-boot faster than most containers warm-start. Measured, not marketed.",
   },
   {
-    icon: '🐳',
-    title: 'Docker Image Compatible',
-    desc: 'Use any OCI image from Docker Hub or your private registry. No conversion, no new tooling.',
+    icon: '📦',
+    title: 'OCI Image Compatible',
+    desc: 'Use any OCI image from Docker Hub or your private registry. No conversion, no new tooling, no new image format.',
   },
   {
     icon: '🔒',
@@ -18,12 +18,12 @@ const features = [
   {
     icon: '📸',
     title: 'Machine-State Snapshots',
-    desc: 'Capture CPU registers, all RAM, disk state. Restore to the exact microsecond. Impossible with containers.',
+    desc: 'Capture CPU registers, all RAM, disk state. Restore to the exact microsecond. Structurally impossible with containers.',
   },
   {
     icon: '🌐',
     title: 'Built-in Clustering',
-    desc: 'Ignite Swarm: VXLAN mesh networking, deterministic subnets. One command to init, one to join.',
+    desc: 'Vyoma Swarm: VXLAN mesh networking, deterministic subnets. One command to init, one to join.',
   },
   {
     icon: '📝',
@@ -43,7 +43,7 @@ const features = [
   {
     icon: '🔧',
     title: '20+ CLI Commands',
-    desc: 'run, ps, stop, exec, logs, stats, inspect, snapshot, restore, and more. Complete VM lifecycle from your terminal.',
+    desc: 'run, ps, stop, exec, logs, stats, inspect, snapshot, restore, teleport and more. Complete VM lifecycle from your terminal.',
   },
 ];
 ---
@@ -56,7 +56,7 @@ const features = [
         Everything you need.<br/><span class="grad">Nothing you don't.</span>
       </h2>
       <p class="subheading" style="margin-top:1rem;text-align:center">
-        One binary gives you VM isolation, Docker compatibility, clustering, snapshots, and a dashboard.
+        One binary gives you VM isolation, OCI compatibility, clustering, snapshots, and a dashboard.
       </p>
     </div>
 
@@ -73,9 +73,9 @@ const features = [
 </section>
 
 <style>
-.feat__grid{margin-top:3.5rem}
-.feat__card{display:flex;flex-direction:column;gap:0.5rem}
-.feat__icon{font-size:1.75rem;margin-bottom:0.25rem}
-.feat__title{font-size:1rem;font-weight:700}
-.feat__desc{font-size:0.875rem;color:var(--text-dim);line-height:1.7}
+.feat__grid  { margin-top: 3.5rem; }
+.feat__card  { display: flex; flex-direction: column; gap: 0.5rem; }
+.feat__icon  { font-size: 1.75rem; margin-bottom: 0.25rem; }
+.feat__title { font-size: 1rem; font-weight: 700; }
+.feat__desc  { font-size: 0.875rem; color: var(--text-dim); line-height: 1.7; }
 </style>
