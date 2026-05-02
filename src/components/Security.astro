@@ -1,12 +1,12 @@
 ---
 const layers = [
-  { num: '1', title: 'KVM Hardware Isolation', desc: 'CPU-enforced memory boundaries. Not policy — physics.', status: 'Active', color: 'var(--green)' },
-  { num: '2', title: 'Firecracker Jailer', desc: 'seccomp-bpf allowlist. ~50 syscalls. Chroot + namespaces.', status: 'Active', color: 'var(--green)' },
-  { num: '3', title: 'Minimal Device Model', desc: 'Only virtio-net/blk/vsock + serial. No USB, BIOS, or legacy PCI.', status: 'Active', color: 'var(--green)' },
-  { num: '4', title: 'Least-Privilege Daemon', desc: 'Dedicated system user. Only CAP_NET_ADMIN + CAP_SYS_ADMIN.', status: 'v1.2', color: 'var(--amber)' },
-  { num: '5', title: 'WireGuard Mesh Encryption', desc: 'All cluster traffic inside WireGuard tunnels. Zero config.', status: 'v1.5', color: 'var(--fire)' },
-  { num: '6', title: 'Image Signing (Ed25519)', desc: 'Cryptographic verification. Only signed images can run.', status: 'v1.5', color: 'var(--fire)' },
-  { num: '7', title: 'Capability-Based API Auth', desc: 'Scoped tokens per VM, per operation, per time window.', status: 'v2.0', color: 'var(--fire)' },
+  { num: '1', title: 'KVM Hardware Isolation',     desc: 'CPU-enforced memory boundaries. Not policy — physics.',                               status: 'Active', color: 'var(--green)' },
+  { num: '2', title: 'cloud-hypervisor Isolation', desc: 'Rust VMM with minimal attack surface. ~50k lines vs millions in QEMU.',               status: 'Active', color: 'var(--green)' },
+  { num: '3', title: 'Minimal Device Model',       desc: 'Only virtio-net/blk/vsock + serial. No USB, BIOS, or legacy PCI attack surface.',     status: 'Active', color: 'var(--green)' },
+  { num: '4', title: 'Least-Privilege Daemon',     desc: 'Dedicated system user. Only CAP_NET_ADMIN + CAP_SYS_ADMIN. No root runtime.',         status: 'v1.2',   color: 'var(--amber)' },
+  { num: '5', title: 'WireGuard Mesh Encryption',  desc: 'All cluster traffic inside WireGuard tunnels. Zero config. Always-on.',               status: 'v1.5',   color: 'var(--gold-light)' },
+  { num: '6', title: 'Image Signing (Ed25519)',    desc: 'Cryptographic verification before boot. Only signed OCI images can run.',             status: 'v1.5',   color: 'var(--gold-light)' },
+  { num: '7', title: 'Capability-Based API Auth',  desc: 'Scoped tokens per VM, per operation, per time window. Zero ambient authority.',       status: 'v2.0',   color: 'var(--cyan)' },
 ];
 ---
 
@@ -35,7 +35,7 @@ const layers = [
             </div>
           </div>
           <p class="shield__label">
-            50,000 lines of Rust VMM<br/>
+            ~50k lines of Rust VMM<br/>
             <span>vs millions in QEMU</span>
           </p>
         </div>
@@ -64,62 +64,64 @@ const layers = [
 </section>
 
 <style>
-.sec__split{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:start}
-.sec__left{position:sticky;top:100px}
+.sec__split { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; align-items: start; }
+.sec__left  { position: sticky; top: 100px; }
 
-.sec__shield{margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
-.shield{position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center}
-.shield__ring{
-  position:absolute;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
+.sec__shield { margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+.shield { position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+.shield__ring {
+  position: absolute; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
 }
-.shield__ring--outer{
-  width:160px;height:160px;
-  border:1px solid rgba(249,115,22,0.15);
-  animation:pulse-ring 4s ease-in-out infinite;
+.shield__ring--outer {
+  width: 160px; height: 160px;
+  border: 1px solid rgba(212,160,23,0.15);
+  animation: pulse-ring 4s ease-in-out infinite;
 }
-.shield__ring--mid{
-  width:110px;height:110px;
-  border:1px solid rgba(249,115,22,0.25);
-  animation:pulse-ring 4s ease-in-out infinite 1s;
+.shield__ring--mid {
+  width: 110px; height: 110px;
+  border: 1px solid rgba(34,211,238,0.2);
+  animation: pulse-ring 4s ease-in-out infinite 1s;
 }
-.shield__ring--inner{
-  width:64px;height:64px;
-  border:1px solid rgba(249,115,22,0.4);
-  animation:pulse-ring 4s ease-in-out infinite 2s;
+.shield__ring--inner {
+  width: 64px; height: 64px;
+  border: 1px solid rgba(212,160,23,0.4);
+  animation: pulse-ring 4s ease-in-out infinite 2s;
 }
-.shield__core{font-size:1.5rem}
-@keyframes pulse-ring{
-  0%,100%{transform:scale(1);opacity:1}
-  50%{transform:scale(1.08);opacity:0.6}
-}
-.shield__label{
-  text-align:center;font-family:var(--mono);font-size:0.75rem;color:var(--text-muted);line-height:1.6;
-}
-.shield__label span{color:var(--text-faint)}
+.shield__core { font-size: 1.5rem; }
 
-.layers{display:flex;flex-direction:column;gap:0.5rem}
-.layer{
-  display:flex;gap:1rem;padding:1rem 1.25rem;
-  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
-  transition:border-color 0.2s;
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.08); opacity: 0.6; }
 }
-.layer:hover{border-color:var(--border-light)}
-.layer__num{
-  width:32px;height:32px;border-radius:8px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:0.75rem;font-weight:700;
-  border:1px solid;
+.shield__label {
+  text-align: center; font-family: var(--mono);
+  font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;
 }
-.layer__body{flex:1;min-width:0}
-.layer__top{display:flex;align-items:center;justify-content:space-between;gap:0.5rem}
-.layer__title{font-size:0.875rem;font-weight:700}
-.layer__status{font-family:var(--mono);font-size:0.65rem;font-weight:600;letter-spacing:0.05em}
-.layer__desc{font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem}
+.shield__label span { color: var(--text-faint); }
 
-@media(max-width:1024px){
-  .sec__split{grid-template-columns:1fr;gap:2.5rem}
-  .sec__left{position:static}
-  .sec__shield{display:none}
+.layers { display: flex; flex-direction: column; gap: 0.5rem; }
+.layer {
+  display: flex; gap: 1rem; padding: 1rem 1.25rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); transition: border-color 0.2s;
+}
+.layer:hover { border-color: var(--border-light); }
+.layer__num {
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+  border: 1px solid;
+}
+.layer__body { flex: 1; min-width: 0; }
+.layer__top  { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.layer__title  { font-size: 0.875rem; font-weight: 700; }
+.layer__status { font-family: var(--mono); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; }
+.layer__desc   { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+@media (max-width: 1024px) {
+  .sec__split { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sec__left  { position: static; }
+  .sec__shield { display: none; }
 }
 </style>
