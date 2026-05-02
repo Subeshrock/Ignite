@@ -1,9 +1,9 @@
 {
-  "name": "ignite-website",
+  "name": "vyoma-website",
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "Ignite — MicroVM ecosystem marketing website built with Astro",
+  "description": "Vyoma — MicroVM Manager marketing website built with Astro",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
