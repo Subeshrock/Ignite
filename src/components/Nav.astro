@@ -1,32 +1,35 @@
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
-    <a href="/" class="nav__logo" aria-label="Ignite">
-      <svg
-        class="nav__icon"
-        width="24"
-        height="24"
-        viewBox="0 0 64 64"
-        fill="none"
-      >
-        <defs
-          ><linearGradient
-            id="fl"
-            x1="32"
-            y1="60"
-            x2="32"
-            y2="4"
-            gradientUnits="userSpaceOnUse"
-            ><stop stop-color="#FF4500"></stop><stop
-              offset=".5"
-              stop-color="#FF6B2B"></stop><stop offset="1" stop-color="#FFA500"
-            ></stop></linearGradient
-          ></defs
-        >
-        <path
-          d="M32 4C32 4 18 20 18 36c0 7.7 6.3 14 14 14s14-6.3 14-14C46 20 32 4 32 4zm0 40c-4.4 0-8-3.6-8-8 0-6 8-16 8-16s8 10 8 16c0 4.4-3.6 8-8 8z"
-          fill="url(#fl)"></path>
+    <a href="/" class="nav__logo" aria-label="Vyoma">
+      <!-- Inline SVG logo (simplified for nav size) -->
+      <svg class="nav__icon" width="28" height="28" viewBox="0 0 64 64" fill="none">
+        <defs>
+          <radialGradient id="navSphere" cx="38%" cy="32%" r="65%">
+            <stop offset="0%" stop-color="#fdd835"/>
+            <stop offset="60%" stop-color="#d4a017"/>
+            <stop offset="100%" stop-color="#7a5500"/>
+          </radialGradient>
+          <linearGradient id="navOrbit" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#67e8f9"/>
+            <stop offset="100%" stop-color="#3b82f6"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="24" fill="#0d0d18" stroke="#1e1e38" stroke-width="1"/>
+        <circle cx="32" cy="32" r="20" fill="url(#navSphere)" opacity="0.9"/>
+        <g stroke="#04040a" stroke-width="1.4" fill="none" opacity="0.6">
+          <line x1="32" y1="12" x2="32" y2="52"/>
+          <line x1="12" y1="32" x2="52" y2="32"/>
+          <line x1="18" y1="18" x2="46" y2="46"/>
+          <line x1="46" y1="18" x2="18" y2="46"/>
+          <ellipse cx="32" cy="32" rx="20" ry="9"/>
+          <ellipse cx="32" cy="32" rx="9" ry="20"/>
+        </g>
+        <circle cx="32" cy="32" r="3" fill="#fdd835"/>
+        <ellipse cx="32" cy="32" rx="30" ry="9" fill="none"
+          stroke="url(#navOrbit)" stroke-width="2.5"
+          transform="rotate(-25 32 32)" opacity="0.9"/>
       </svg>
-      <span>ignite</span>
+      <span>vyoma</span>
     </a>
 
     <nav class="nav__links" aria-label="Main">
@@ -39,16 +42,14 @@
 
     <div class="nav__right">
       <a
-        href="https://github.com/Subeshrock/micro-vm-ecosystem.git"
+        href="https://github.com/VyomaVM/Vyoma"
         target="_blank"
         rel="noopener"
         class="btn btn--ghost btn--sm"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
-          ><path
-            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-          ></path></svg
-        >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
         Star on GitHub
       </a>
     </div>
@@ -59,28 +60,21 @@
   </div>
 </header>
 
-<!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#how">How it works</a>
   <a href="#features">Features</a>
   <a href="#beyond">Beyond Docker</a>
   <a href="#security">Security</a>
   <a href="#start">Get started</a>
-  <a
-    href="https://github.com/Subeshrock/micro-vm-ecosystem.git"
-    target="_blank"
-    rel="noopener">GitHub ↗</a
-  >
+  <a href="https://github.com/VyomaVM/Vyoma" target="_blank" rel="noopener">GitHub ↗</a>
 </div>
 
 <style>
   .nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(5, 5, 7, 0.75);
+    background: rgba(4, 4, 10, 0.80);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
@@ -99,7 +93,7 @@
     font-size: 1.15rem;
   }
   .nav__logo span {
-    background: linear-gradient(135deg, var(--fire-light), var(--fire));
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold), var(--cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -115,12 +109,8 @@
     color: var(--text-muted);
     transition: color 0.2s;
   }
-  .nav__links a:hover {
-    color: var(--text);
-  }
-  .nav__right {
-    margin-left: auto;
-  }
+  .nav__links a:hover { color: var(--gold-light); }
+  .nav__right { margin-left: auto; }
   .btn--sm {
     padding: 0.4rem 0.9rem;
     font-size: 0.8rem;
@@ -134,19 +124,15 @@
     padding: 6px;
   }
   .nav__burger span {
-    width: 18px;
-    height: 1.5px;
+    width: 18px; height: 1.5px;
     background: var(--text-dim);
     border-radius: 1px;
     transition: 0.2s;
   }
-
   .mobile-menu {
     display: none;
     position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
+    top: 60px; left: 0; right: 0;
     z-index: 99;
     background: var(--bg-raised);
     border-bottom: 1px solid var(--border);
@@ -161,18 +147,11 @@
     color: var(--text-dim);
     border-bottom: 1px solid var(--border);
   }
-  .mobile-menu.open {
-    display: flex;
-  }
+  .mobile-menu.open { display: flex; }
 
   @media (max-width: 768px) {
-    .nav__links,
-    .nav__right {
-      display: none;
-    }
-    .nav__burger {
-      display: flex;
-    }
+    .nav__links, .nav__right { display: none; }
+    .nav__burger { display: flex; }
   }
 </style>
 
