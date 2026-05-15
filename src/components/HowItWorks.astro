@@ -9,7 +9,7 @@ const steps = [
   },
   {
     num: '02',
-    title: 'Vyoma boots a real VM in <150ms',
+    title: 'Vyoma boots a real VM in ~250ms',
     desc: 'cloud-hypervisor creates a MicroVM with its own kernel, memory, and network stack. Hardware isolation via KVM — not namespaces. Not policy — physics.',
     code: 'vyoma run nginx:latest --vcpu 2 --memory 256M -p 80:80',
     icon: '⚡',
@@ -18,7 +18,7 @@ const steps = [
     num: '03',
     title: 'Manage it like Docker',
     desc: 'Same CLI patterns you already know. ps, logs, exec, stop, rm — they all work. Your muscle memory transfers 1:1. Learn nothing new.',
-    code: 'vyoma ps\nvyoma logs my-vm -f\nvyoma exec my-vm bash',
+    code: 'vyoma ps\nvyoma logs my-vm -f',
     icon: '🛠',
   },
   {

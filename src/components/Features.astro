@@ -2,8 +2,8 @@
 const features = [
   {
     icon: '⚡',
-    title: 'Sub-150ms Boot',
-    desc: "cloud-hypervisor's lean VMM means MicroVMs cold-boot faster than most containers warm-start. Measured, not marketed.",
+    title: 'Fast Boot (~250ms)',
+    desc: "cloud-hypervisor's lean VMM boots a real kernel in about 250ms — comparable to a container start. Measured, not marketed.",
   },
   {
     icon: '📦',
@@ -31,14 +31,14 @@ const features = [
     desc: 'Multi-VM stacks from a single YAML file. Works with Docker Compose v3 syntax. Zero migration cost.',
   },
   {
-    icon: '~5MB',
+    icon: '~30MB',
     title: 'Tiny Overhead',
-    desc: 'Each MicroVM adds only ~5MB of overhead. Run hundreds on a single host without breaking a sweat.',
+    desc: 'Each MicroVM adds about 30MB of overhead (kernel + virtio). Run dozens on a single host.',
   },
   {
     icon: '📊',
     title: 'Built-in Dashboard',
-    desc: 'Web dashboard served by the daemon at localhost:3000. Live VM status, metrics, and management. No install needed.',
+    desc: 'Web dashboard served by the daemon at localhost:8080. Live VM status, metrics, and management. No install needed.',
   },
   {
     icon: '🔧',

@@ -3,10 +3,10 @@ const layers = [
   { num: '1', title: 'KVM Hardware Isolation',     desc: 'CPU-enforced memory boundaries. Not policy — physics.',                               status: 'Active', color: 'var(--green)' },
   { num: '2', title: 'cloud-hypervisor Isolation', desc: 'Rust VMM with minimal attack surface. ~50k lines vs millions in QEMU.',               status: 'Active', color: 'var(--green)' },
   { num: '3', title: 'Minimal Device Model',       desc: 'Only virtio-net/blk/vsock + serial. No USB, BIOS, or legacy PCI attack surface.',     status: 'Active', color: 'var(--green)' },
-  { num: '4', title: 'Least-Privilege Daemon',     desc: 'Dedicated system user. Only CAP_NET_ADMIN + CAP_SYS_ADMIN. No root runtime.',         status: 'v1.2',   color: 'var(--amber)' },
+  { num: '4', title: 'Least-Privilege Daemon',     desc: 'Dedicated vyoma user. Only CAP_SYS_ADMIN, CAP_NET_ADMIN, CAP_NET_RAW, and others. No root runtime.',         status: 'Shipped',   color: 'var(--amber)' },
   { num: '5', title: 'WireGuard Mesh Encryption',  desc: 'All cluster traffic inside WireGuard tunnels. Zero config. Always-on.',               status: 'v1.5',   color: 'var(--gold-light)' },
-  { num: '6', title: 'Image Signing (Ed25519)',    desc: 'Cryptographic verification before boot. Only signed OCI images can run.',             status: 'v1.5',   color: 'var(--gold-light)' },
-  { num: '7', title: 'Capability-Based API Auth',  desc: 'Scoped tokens per VM, per operation, per time window. Zero ambient authority.',       status: 'v2.0',   color: 'var(--cyan)' },
+  { num: '6', title: 'Image Signing (Ed25519)',    desc: 'Cryptographic verification before boot. Only signed OCI images can run.',             status: 'Shipped',   color: 'var(--gold-light)' },
+  { num: '7', title: 'Capability-Based API Auth',  desc: 'Token‑based auth today; scoped tokens planned.',       status: 'v2.0',   color: 'var(--cyan)' },
 ];
 ---
 

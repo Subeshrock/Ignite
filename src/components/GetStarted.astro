@@ -11,16 +11,18 @@
       <div class="start__step">
         <div class="start__badge">1</div>
         <h3>Install</h3>
-        <p>Single binary. No dependencies. Works on any Linux with KVM.</p>
+        <p>Installs with a single .deb/.rpm. Requires KVM, cgroups v2, and a Linux kernel 5.10+.</p>
         <div class="codeblock">
           <span class="c"># One-line install</span><br/>
-          <span class="k">curl -sfL</span> https://get.vyoma.dev | <span class="k">sh</span><br/><br/>
+          <span class="k">sudo dpkg -i vyoma_2.7.0_amd64.deb</span><br/><br/>
           <span class="c"># Verify everything works</span><br/>
           <span class="k">vyoma doctor</span><br/>
-          <span class="s">✓ KVM available</span><br/>
-          <span class="s">✓ cloud-hypervisor bundled</span><br/>
-          <span class="s">✓ vyomad running</span><br/>
-          <span class="s">✓ Network configured</span>
+          <span class="s">&nbsp;&nbsp;✓ KVM Device Access (/dev/kvm)</span><br/>
+          <span class="s">&nbsp;&nbsp;✓ Cgroups v2 (/sys/fs/cgroup)</span><br/>
+          <span class="s">&nbsp;&nbsp;✓ Cloud Hypervisor Binary</span><br/>
+          <span class="s">&nbsp;&nbsp;✓ Virtiofsd Binary</span><br/>
+          <span class="s">&nbsp;&nbsp;⚠ Vyoma Bridge (vyoma0)</span><br/>
+          <span class="s">&nbsp;&nbsp;✓ debugfs (e2fsprogs)</span><br/>
         </div>
       </div>
 
@@ -31,12 +33,10 @@
         <div class="codeblock">
           <span class="c"># Boot Ubuntu with 2 vCPUs, 512MB RAM</span><br/>
           <span class="k">vyoma run</span> <span class="s">ubuntu:latest</span> <span class="f">--vcpu 2 --memory 512M</span><br/><br/>
-          <span class="c"># It's a real VM — own kernel</span><br/>
-          <span class="k">vyoma exec</span> <span class="s">my-vm</span> <span class="f">cat /proc/cpuinfo</span><br/><br/>
-          <span class="c"># Full Docker-like management</span><br/>
-          <span class="k">vyoma ps</span><br/>
+          <span class="c"># List running VMs</span><br/>
+          <span class="k">vyoma ps</span><br/><br/>
+          <span class="c"># Follow VM logs</span><br/>
           <span class="k">vyoma logs</span> <span class="s">my-vm</span> <span class="f">-f</span><br/>
-          <span class="k">vyoma stats</span> <span class="s">my-vm</span>
         </div>
       </div>
 
@@ -49,12 +49,13 @@
           <span class="k">vyoma up</span> <span class="f">-d</span><br/><br/>
           <span class="c"># Add VM-specific config (optional)</span><br/>
           <span class="p">services:</span><br/>
-          <span class="p">  api:</span><br/>
-          <span>    image: myapp:latest</span><br/>
-          <span class="p">    vm:</span> <span class="c"># Vyoma extension</span><br/>
-          <span>      vcpus: 4</span><br/>
-          <span>      memory: 1G</span><br/>
-          <span>      kernel: 6.1-vyoma-slim</span>
+          <span class="p">&nbsp;&nbsp;api:</span><br/>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;image: myapp:latest</span><br/>
+          <span class="p">&nbsp;&nbsp;&nbsp;&nbsp;deploy:</span><br/>
+          <span class="p">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resources:</span><br/>
+          <span class="p">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limits:</span><br/>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpus: "4"</span><br/>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;memory: "1G"</span><br/>
         </div>
       </div>
     </div>

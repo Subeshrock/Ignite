@@ -11,7 +11,7 @@
 
   <div class="wrap hero__wrap">
     <div class="tag tag--cyan">
-      <span>🌐</span> Now in v1.1 — Open Source · Apache 2.0
+      <span>🌐</span> Now in v2.7.1 — Open Source · Apache 2.0
     </div>
 
     <h1 class="hero__h1">
@@ -22,17 +22,17 @@
     <p class="hero__sub">
       Vyoma is a MicroVM manager powered by <strong>cloud-hypervisor</strong>.
       Use OCI images you already have, get <strong>hardware-level isolation</strong>
-      in under 150ms. One binary. No YAML gymnastics.
+      in under 250ms. One binary. No YAML gymnastics.
     </p>
 
     <div class="hero__install">
       <div class="hero__cmd">
         <span class="hero__prompt">$</span>
-        <span>curl -sfL https://get.vyoma.dev | sh</span>
+        <span>sudo dpkg -i vyoma_2.7.0_amd64.deb</span>
         <button
           class="hero__copy"
           aria-label="Copy install command"
-          onclick="navigator.clipboard.writeText('curl -sfL https://get.vyoma.dev | sh')"
+          onclick="navigator.clipboard.writeText('sudo dpkg -i vyoma_2.7.0_amd64.deb')"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2">
@@ -55,8 +55,8 @@
 
     <div class="hero__stats">
       <div class="hero__stat">
-        <strong>&lt;150ms</strong>
-        <span>Cold boot</span>
+        <strong>~250ms</strong>
+        <span>Cold boot (from pull)</span>
       </div>
       <div class="hero__stat-sep" aria-hidden="true"></div>
       <div class="hero__stat">
@@ -88,13 +88,28 @@
         <span class="k">$ vyoma run</span>
         <span class="s"> ubuntu:latest</span>
         <span class="f"> --vcpu 2 --memory 512M -p 8080:80</span><br/>
-        <span class="c">⚡ VM booted in 118ms — 172.19.0.2</span><br/><br/>
-
-        <span class="c"># Real VM — its own kernel, not namespaces</span><br/>
-        <span class="k">$ vyoma exec</span>
-        <span class="s"> my-vm</span>
-        <span class="f"> uname -r</span><br/>
-        <span class="c">6.1.0-vyoma — cloud-hypervisor VMM</span><br/><br/>
+        <span class="c">⚡ VM booted in ~250ms — 172.16.0.2</span><br/><br/>
+        <span class="c"># Check running VMs</span><br/>
+        <span class="k">$ vyoma ps</span><br/>
+        <table>
+          <thead>
+            <tr>
+              <th class="s">VM ID</th>
+              <th class="s">IP ADDRESS</th>
+              <th class="s">HOSTNAME</th>
+            </tr>  
+          </thead>
+          <tbody>
+            <tr>
+              <td class="f">3f2a...</td>
+              <td class="f">172.16.0.5</td>
+              <td class="f">-</td>
+            </tr>
+          </tbody>
+        </table><br/>
+        <span class="s"># View logs</span>
+        <span class="f">$ vyoma logs 3f2a... -f</span><br/>
+        <span class="c">[stdout] Alpine Linux 3.21</span><br/><br/>
 
         <span class="c"># Snapshot the entire machine state</span><br/>
         <span class="k">$ vyoma snapshot</span>
@@ -106,13 +121,19 @@
         <span class="k">$ vyoma restore</span>
         <span class="s"> my-vm</span>
         <span class="f"> --from before-deploy</span><br/>
-        <span class="c">✓ Restored in 44ms — every byte exactly as it was</span>
+        <span class="c">✓ VM restored (snapshot loaded) — every byte exactly as it was</span>
       </div>
     </div>
   </div>
 </section>
 
 <style>
+  table {
+    margin: auto;
+  }
+  td {
+    padding: 0 20px;
+  }
   .hero {
     position: relative;
     padding: 9rem 0 5rem;

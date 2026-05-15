@@ -1,14 +1,14 @@
 ---
 const rows = [
   { feature: 'Isolation model',       docker: 'Namespaces (kernel shared)',    vyoma: 'KVM (own kernel per VM)',      winner: 'vyoma' },
-  { feature: 'Cold start',            docker: '~500ms',                        vyoma: '<150ms',                       winner: 'vyoma' },
-  { feature: 'Memory overhead',       docker: '~2MB',                          vyoma: '~5MB',                         winner: 'docker' },
+  { feature: 'Cold start',            docker: '~100ms',                        vyoma: '~250ms',                       winner: 'docker' },
+  { feature: 'Memory overhead',       docker: '~2MB',                          vyoma: '~30MB',                         winner: 'docker' },
   { feature: 'Image format',          docker: 'OCI',                           vyoma: 'OCI (same images)',             winner: 'tie' },
   { feature: 'CLI familiarity',       docker: 'docker run/ps/stop',            vyoma: 'vyoma run/ps/stop (superset)', winner: 'vyoma' },
   { feature: 'VMM backend',           docker: 'runc / containerd',             vyoma: 'cloud-hypervisor (Rust)',      winner: 'vyoma' },
   { feature: 'Hardware snapshots',    docker: '❌ Not possible',               vyoma: '✅ CPU + RAM + disk',          winner: 'vyoma' },
-  { feature: 'Live migration',        docker: '❌ Not possible',               vyoma: '✅ 20-80ms downtime',          winner: 'vyoma' },
-  { feature: 'Time travel/branching', docker: '❌ Not possible',               vyoma: '✅ Git-like history',          winner: 'vyoma' },
+  { feature: 'Live migration',        docker: '❌ Not possible',               vyoma: '✅ <1 second downtime',          winner: 'vyoma' },
+  { feature: 'Machine-state snapshots', docker: '❌ Not possible',               vyoma: '✅ Restore any snapshot',          winner: 'vyoma' },
   { feature: 'Hibernate to zero',     docker: '❌ Loses state',               vyoma: '✅ Full state preserved',      winner: 'vyoma' },
   { feature: 'Kernel customization',  docker: '❌ Host kernel',               vyoma: '✅ Per-VM kernel',             winner: 'vyoma' },
   { feature: 'Security layers',       docker: '2–3',                           vyoma: '7 independent layers',         winner: 'vyoma' },

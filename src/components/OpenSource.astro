@@ -7,7 +7,7 @@
       Built in public.<br/><span class="grad">By developers, for developers.</span>
     </h2>
     <p class="subheading" style="margin-top:1rem;text-align:center">
-      Vyoma is Apache 2.0 licensed. The entire codebase is Rust + TypeScript, powered by
+      Vyoma is Apache 2.0 licensed. The entire codebase is Rust + Go + TypeScript, powered by
       cloud-hypervisor. Contributions welcome — from bug fixes to building the features
       Docker can never have.
     </p>
@@ -15,6 +15,9 @@
     <div class="oss__chips">
       <div class="oss__chip">
         <span class="oss__chip-dot" style="background:var(--gold)"></span>Rust
+      </div>
+      <div class="oss__chip">
+        <span class="oss__chip-dot" style="background:var(--green)"></span>Go
       </div>
       <div class="oss__chip">
         <span class="oss__chip-dot" style="background:var(--cyan)"></span>TypeScript
@@ -33,13 +36,15 @@
     <div class="oss__repo codeblock" style="width:100%;max-width:500px;text-align:left">
       <span class="s">VyomaVM/Vyoma/</span><br/>
       ├── <span class="k">crates/</span>
-      <span class="c">&nbsp;&nbsp;# Rust workspace (4 crates → 11 in v2)</span><br/>
+      <span class="c">&nbsp;&nbsp;# Rust workspace (14+ crates)</span><br/>
       ├── <span class="k">ui/</span>
       <span class="c">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# TypeScript dashboard</span><br/>
       ├── <span class="k">tests/</span>
       <span class="c">&nbsp;&nbsp;&nbsp;# Integration + chaos + compat</span><br/>
-      └── <span class="k">packaging/</span>
-      <span class="c"># .deb/.rpm + systemd units</span>
+      ├── <span class="k">packaging/</span>
+      <span class="c"># .deb/.rpm + systemd</span><br/>
+      └── <span class="k">vk8s/</span>
+      <span class="c"># Go Kubernetes integration</span>
     </div>
 
     <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;justify-content:center">
